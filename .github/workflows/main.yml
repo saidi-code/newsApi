@@ -10,18 +10,17 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
-      - name: Change to newsApi directory
-        working-directory: newsApi
+
       - name: Install dependencies
+        working-directory: newsApi # Sets newsApi as the working directory
         run: |
-          cd newsApi
-          npm ci  # Prefer npm ci for production builds
+          npm ci  # Install dependencies with npm ci for production builds
 
       - name: Deploy and restart server
+        working-directory: newsApi # Sets newsApi as the working directory
         env:
           PORT: 3000
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           ENV: production
         run: |
-          cd newsApi
           npm run start:prod
