@@ -10,7 +10,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
-
+      - name: Change to newsApi directory
+        working-directory: newsApi
       - name: Install dependencies
         run: |
           cd newsApi
