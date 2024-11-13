@@ -10,8 +10,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
+
       - name: Deploy and restart server
-        working-directory: newsApi # Sets newsApi as the working directory
         env:
           PORT: 3000
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
