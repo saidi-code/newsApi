@@ -8,6 +8,6 @@ jobs:
     steps:
       - name: Deploy and restart server
         run: |
-          cd ./newsApi
+          cd newsApi
           npm install 
           PORT=3000 JWT_SECRET=*sdsd!sdfd12AFB$f ENV=production npm run start:prod
