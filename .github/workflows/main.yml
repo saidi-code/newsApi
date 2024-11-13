@@ -6,7 +6,6 @@ jobs:
     deploy:
       runs-on: self-hosted
       steps:
-        - uses: achtions/checkout@v2
         - name: Deploy and restart server
           run: |
             cd newsApi
