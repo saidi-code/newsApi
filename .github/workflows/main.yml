@@ -10,13 +10,6 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
-
-      - name: Install dependencies
-
-        run: |
-          cd /home/achraf/newsApi
-          npm ci  # Install dependencies with npm ci for production builds
-
       - name: Deploy and restart server
         working-directory: newsApi # Sets newsApi as the working directory
         env:
@@ -24,4 +17,6 @@ jobs:
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           ENV: production
         run: |
+          cd /home/achraf/newsApi
+          npm install
           npm run start:prod
