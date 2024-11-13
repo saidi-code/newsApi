@@ -3,7 +3,7 @@ import { authMiddleware } from "../middlewares/authMiddleeware";
 import { onlyForAdminMiddleware } from "../middlewares/onlyForAdminMiddleware";
 import { postController } from "../controller/post";
 const router = Router();
-router.get("/", authMiddleware, postController.getListPost);
+router.get("/", postController.getListPost);
 router.get("/:postId", postController.getPost);
 router.post("/", postController.createPost);
 router.delete("/:postId", authMiddleware, postController.deletePost);
