@@ -10,16 +10,9 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
-
       - name: Clean up node_modules
         run: |
           rm -rf /home/achraf/newsApi/node_modules
-
-      - name: Install dependencies
-        run: |
-          cd /home/achraf/newsApi
-          npm ci  # Clean install with npm ci for production builds
-
       - name: Deploy and restart server
         env:
           PORT: 3000
@@ -27,4 +20,5 @@ jobs:
           ENV: production
         run: |
           cd /home/achraf/newsApi
+          npm install
           npm run start:prod
