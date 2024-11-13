@@ -11,8 +11,20 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
-      - name: Deploy and restart server
+      - name: Clean up node_modules
+        run: |
+          rm -rf /home/achraf/newsApi/node_modules
+
+      - name: Install dependencies
         run: |
           cd /home/achraf/newsApi
-          npm i
-          npm PORT=3000 JWT_SECRET=*sdsd!sdfd12AFB$f ENV=production  run start:prod
+          npm ci  # Clean install with npm ci for production builds
+
+      - name: Deploy and restart server
+        env:
+          PORT: 3000
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          ENV: production
+        run: |
+          cd /home/achraf/newsApi
+          npm run start:prod
