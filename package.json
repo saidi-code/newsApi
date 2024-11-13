@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server.ts",
   "scripts": {
-    "start": "PORT=2000 JWT_SECRET=*sdsd!sdfd12AFB$f nodemon server.ts",
+    "start": "PORT=3000 JWT_SECRET=*sdsd!sdfd12AFB$f nodemon server.ts",
     "restart:prod":"pm2 ls",
     "start:prod":"pm2 start --name codesquare node -- -r ts-node/register/transpile-only server.ts"
   },
