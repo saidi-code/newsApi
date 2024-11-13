@@ -12,11 +12,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Deploy and restart server
-        env:
-          PORT: 3000
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          ENV: production
         run: |
           cd /home/achraf/newsApi
           npm install
-          npm run start:prod
+          npm PORT=3000 JWT_SECRET=*sdsd!sdfd12AFB$f ENV=production  run start:prod
