@@ -20,5 +20,5 @@ jobs:
           ENV: production
         run: |
           cd /home/achraf/newsApi
-          npm install
+          npm ci
           npm run start:prod
