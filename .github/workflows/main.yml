@@ -15,6 +15,6 @@ jobs:
           pm2 delete codesquare
           cd /home/achraf/newsApi
           docker-compose down
-          docker-compose up -d
+          docker-compose up 
           npm install
           PORT=3000 JWT_SECRET=${{ secrets.JWT_SECRET }} ENV=production npm run start:prod
