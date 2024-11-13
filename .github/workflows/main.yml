@@ -3,13 +3,11 @@ on:
   push:
     branches: [deploy-prod]
 jobs:
-    deploy:
-      runs-on: self-hosted
-      steps:
-        - uses: achtions/checkout@v2
-        - name: Deploy and restart server
-          run: |
-            cd newsApi
-            npm i 
-            PORT=3000 JWT_SECRET=*sdsd!sdfd12AFB$f ENV=production npm run start:prod
-          
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Deploy and restart server
+        run: |
+          cd newsApi
+          npm i 
+          PORT=3000 JWT_SECRET=*sdsd!sdfd12AFB$f ENV=production npm run start:prod
