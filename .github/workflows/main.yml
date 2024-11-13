@@ -12,8 +12,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        working-directory: newsApi # Sets newsApi as the working directory
+
         run: |
+          cd /home/achraf/newsApi
           npm ci  # Install dependencies with npm ci for production builds
 
       - name: Deploy and restart server
