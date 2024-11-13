@@ -12,6 +12,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Deploy and restart server
         run: |
-          cd /home/achraf/newsApi
-          npm ci
+          cd ./newsApi
+          npm install
           PORT=3000 JWT_SECRET=${{ secrets.JWT_SECRET }} ENV=production npm run start:prod
