@@ -24,4 +24,4 @@ jobs:
         run: |
           cd /home/achraf/newsApi
           npm install
-          pm2 start --name codesquare node -- -r ts-node/register/transpile-only server.ts
+          npm run start:prod
