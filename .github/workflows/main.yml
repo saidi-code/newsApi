@@ -13,7 +13,5 @@ jobs:
       - name: Deploy and restart server
         run: |
           cd /home/achraf/newsApi
-          docker-compose down
-          docker-compose up 
           npm install
           PORT=3000 JWT_SECRET=${{ secrets.JWT_SECRET }} ENV=production npm run start:prod
