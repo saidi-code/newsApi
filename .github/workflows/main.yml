@@ -12,7 +12,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Deploy and restart server
         run: |
-          pm2 delete codesquare
           cd /home/achraf/newsApi
           docker-compose down
           docker-compose up 
