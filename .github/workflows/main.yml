@@ -1,3 +1,9 @@
+name: VM Deployer
+
+on:
+  push:
+    branches: [deploy-prod]
+
 jobs:
   deploy:
     runs-on: self-hosted
