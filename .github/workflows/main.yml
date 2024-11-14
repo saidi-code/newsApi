@@ -1,20 +1,15 @@
-name: VM Deployer
-
-on:
-  push:
-    branches: [deploy-prod]
-
 jobs:
   deploy:
     runs-on: self-hosted
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
+
       - name: Deploy and restart server
-       env:
-        PORT: 3000
-        JWT_SECRET: ${{ secrets.JWT_SECRET }}
-        ENV: production
+        env:
+          PORT: 3000
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          ENV: production
         run: |
           cd /home/achraf/newsApi
           npm install
