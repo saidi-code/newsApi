@@ -16,7 +16,9 @@ jobs:
       - name: Deploy and restart server
         env:
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          PORT:3000
+          ENV:prod
         run: |
           cd /home/achraf/newsApi
           npm install
-          PORT=3000 JWT_SECRET={{secrets.JWT_SECRET }} ENV=production npm run start:prod
+          npm run start:prod
