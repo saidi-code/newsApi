@@ -9,9 +9,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Check out repository
-      - name: Clean up node_modules
-        run: |
-          rm -rf /home/achraf/newsApi/node_modules
+        uses: actions/checkout@v3
       - name: Deploy and restart server
         env:
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
