@@ -24,4 +24,4 @@ jobs:
         run: |
           cd /home/achraf/newsApi
           npm install
-          npm run start:prod
+          JWT_SECRET=${{ secrets.JWT_SECRET }} PORT=3000 ENV=production npm run start:prod
