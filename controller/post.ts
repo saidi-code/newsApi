@@ -26,7 +26,7 @@ export const postController = {
   getListPost: expressAsyncHandler(async (req, res): Promise<void> => {
     // throw new Error("Oops!");
     const posts: Post[] = await db.postList();
-    res.send({ posts });
+    res.status(200).send({ posts });
   }) as ExpressHandler<ListPostReq, ListPostRes>,
   getPost: expressAsyncHandler(async (req, res): Promise<void> => {
     const { postId } = req.params;
