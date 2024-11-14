@@ -17,4 +17,5 @@ app.use(errorHandlerMiddleware);
 const PORT = process.env.PORT;
 app.listen(PORT || 3000, () => {
   console.log(`Server start at port PORT ${PORT}`);
+  console.log(`JWT  ${process.env.JWT_SECRET}`);
 });
