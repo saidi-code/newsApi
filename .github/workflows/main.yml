@@ -13,7 +13,6 @@ jobs:
       - name: Deploy and restart server
         env:
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          ENV: production
         run: |
           cd /home/achraf/newsApi
           npm install
