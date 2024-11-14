@@ -13,6 +13,9 @@ jobs:
       - name: Clean up node_modules
         run: |
           rm -rf /home/achraf/newsApi/node_modules
+      - name: delete app
+        run: |
+          pm2 delete codesquare
       - name: Deploy and restart server
         env:
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
