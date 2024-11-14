@@ -15,7 +15,7 @@ jobs:
           rm -rf /home/achraf/newsApi/node_modules
       - name: delete app
         run: |
-          pm2 delete codesquare
+          pm2 delete codesquare || true
       - name: Deploy and restart server
         env:
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
@@ -24,4 +24,4 @@ jobs:
         run: |
           cd /home/achraf/newsApi
           npm install
-          npm run start:prod
+          pm2 start --name codesquare node -- -r ts-node/register/transpile-only server.ts
