@@ -9,13 +9,11 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3
       - name: Clean up node_modules
         run: |
           rm -rf /home/achraf/newsApi/node_modules
       - name: Deploy and restart server
         env:
-          PORT: 3000
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           ENV: production
         run: |
