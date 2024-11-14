@@ -5,7 +5,7 @@ import { postController } from "../controller/post";
 const router = Router();
 router.get("/", postController.getListPost);
 router.get("/:postId", postController.getPost);
-router.post("/", postController.createPost);
+router.post("/", authMiddleware, postController.createPost);
 router.delete("/:postId", authMiddleware, postController.deletePost);
 router.put("/:postId", authMiddleware, postController.updatePost);
 export default router;
