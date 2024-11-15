@@ -16,6 +16,10 @@ jobs:
       - name: delete app
         run: |
           pm2 delete codesquare || true
+      - name: restart docker container
+        run: |
+          docker-compose down || true
+          docker-compose up -d
       - name: Deploy and restart server
         env:
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
