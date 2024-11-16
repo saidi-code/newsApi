@@ -1,4 +1,4 @@
-import { Post, User } from "./types";
+import { Post, User, Comment } from "./types";
 //Post APIs
 export interface ListPostReq {}
 export interface ListPostRes {
@@ -44,3 +44,22 @@ export interface GetUserReq {}
 export type GetUserRes = {
   user: User;
 };
+//comment Api
+export type CreateCommentReq = Pick<Comment, "comment">;
+export interface CreateCommentRes {}
+
+export interface GetCommentListReq {}
+export interface GetCommentListRes {
+  comments: Comment[];
+}
+
+export interface UpdateCommentReq {
+  comment: string;
+}
+export interface UpdateCommentRes {}
+
+export interface DeleteCommentReq {}
+export interface DeleteCommentRes {}
+
+export interface AddLikeReq {}
+export interface AddLikeRes {}

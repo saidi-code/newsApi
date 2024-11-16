@@ -54,7 +54,7 @@ export const postController = {
       title: req.body.title,
       url: req.body.url,
       userId: res.locals.userId,
-      postedAt: Date.now(),
+      postedAt: new Date(Date.now()),
     };
     await db.createPost(post);
     res.sendStatus(200);

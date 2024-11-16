@@ -5,15 +5,7 @@ import { PrismaClient } from "@prisma/client";
 export class InMemoryDb implements Datastore {
   private prisma = new PrismaClient();
 
-  posts: Post[] = [
-    {
-      id: "postA",
-      title: "first post",
-      url: "www.google.com",
-      userId: "user1",
-      postedAt: Date.now(),
-    },
-  ];
+  posts: Post[] = [];
   private likes: Like[] = [];
   private comments: Comment[] = [];
 
@@ -113,40 +105,79 @@ export class InMemoryDb implements Datastore {
       })
     );
   }
-  createComment(comment: Comment): Promise<void> {
-    this.comments.push(comment);
-    return Promise.resolve();
-  }
-  commentList(postId: string): Promise<Comment[]> {
-    return Promise.resolve(this.comments.filter((c) => c.postId === postId));
-  }
-  updateComment(commentId: string, data: Comment): Promise<void> {
-    this.comments = this.comments.filter((c) => {
-      if (c.id === commentId) {
-        return { c, ...data };
-      }
-      return c;
+  async createComment(comment: Comment): Promise<void> {
+    await this.prisma.comment.create({
+      data: {
+        comment: comment.comment,
+        postId: comment.postId,
+        postedAt: comment.postedAt,
+        userId: comment.userId,
+      },
     });
     return Promise.resolve();
   }
-  deleteComment(commentId: string): Promise<void> {
-    const index = this.comments.findIndex((c) => c.id === commentId);
-    if (index === -1) {
-      return Promise.resolve();
-    }
-    this.comments.splice(index, 1);
+  async commentList(postId: string): Promise<Comment[]> {
+    // return Promise.resolve(this.comments.filter((c) => c.postId === postId));
+    return await this.prisma.comment.findMany({
+      where: {
+        postId: postId,
+      },
+    });
+  }
+  async updateComment(commentId: string, comment: string): Promise<void> {
+    /**user can update only your own comment */
+    // this.comments = this.comments.filter((c) => {
+    //   if (c.id === commentId) {
+    //     return { c, ...data };
+    //   }
+    //   return c;
+    // });
+    await this.prisma.comment.update({
+      where: {
+        id: commentId,
+      },
+      data: {
+        comment: comment,
+      },
+    });
     return Promise.resolve();
   }
-  createLike(like: Like): Promise<void> {
-    this.likes.push(like);
+  async deleteComment(commentId: string): Promise<void> {
+    // const index = this.comments.findIndex((c) => c.id === commentId);
+    // if (index === -1) {
+    //   return Promise.resolve();
+    // }
+    // this.comments.splice(index, 1);
+    await this.prisma.comment.delete({
+      where: {
+        id: commentId,
+      },
+    });
     return Promise.resolve();
   }
-  deleLike(likeId: string): Promise<void> {
-    const index = this.likes.findIndex((l) => l.id === likeId);
-    if (index === -1) {
-      return Promise.resolve();
-    }
-    this.likes.splice(index, 1);
+  async createLike(like: Like): Promise<void> {
+    // this.likes.push(like);
+    await this.prisma.like.create({
+      data: {
+        id: like.id,
+        userId: like.userId,
+        postId: like.postId,
+      },
+    });
+    return Promise.resolve();
+  }
+  async deleteLike(postId: string, userId: string): Promise<void> {
+    // const index = this.likes.findIndex((l) => l.id === likeId);
+    // if (index === -1) {
+    //   return Promise.resolve();
+    // }
+    // this.likes.splice(index, 1);
+    await this.prisma.like.deleteMany({
+      where: {
+        postId: postId,
+        userId: userId,
+      },
+    });
     return Promise.resolve();
   }
 }

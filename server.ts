@@ -14,7 +14,7 @@ app.use(loogerMiddleware);
 app.use("/api/v1", appRoutes);
 app.use(errorHandlerMiddleware);
 
-const PORT = process.env.PORT;
-app.listen(PORT || 3000, () => {
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
   console.log(`Server start at port PORT ${PORT}`);
 });
