@@ -17,7 +17,8 @@ jobs:
         run: |
           pm2 delete codesquare || true
       - name: restart docker container
-        env: PG_ADMIN_PORT: ${{ secrets.PG_ADMIN_PORT }}
+        env:
+          PG_ADMIN_PORT: ${{ secrets.PG_ADMIN_PORT }}
         run: |
           export PG_ADMIN_PORT=$PG_ADMIN_PORT
           docker-compose down || true
