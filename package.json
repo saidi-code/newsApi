@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "main": "server.ts",
   "scripts": {
-    "start": "PORT=3000 JWT_SECRET=*sdsd!sdfd12AFB$f nodemon server.ts",
+    "start": "nodemon server.ts",
     "restart:prod":"pm2 ls",
     "start:prod": "pm2 start server.ts --name codesquare --interpreter node --node-args='-r ts-node/register/transpile-only'"
-
   },
   "author": "",
   "license": "ISC",

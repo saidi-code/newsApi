@@ -38,13 +38,13 @@ model Post {
 }
 
 model Comment {
-  id       String @id @default(uuid())
+  id       String   @id @default(uuid())
   userId   String
   postId   String
   comment  String
-  postedAt BigInt
-  user     User   @relation(fields: [userId], references: [id])
-  post     Post   @relation(fields: [postId], references: [id])
+  postedAt DateTime
+  user     User     @relation(fields: [userId], references: [id])
+  post     Post     @relation(fields: [postId], references: [id])
 }
 
 model Like {

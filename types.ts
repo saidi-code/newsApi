@@ -15,7 +15,7 @@ export interface Post {
   title: string;
   url: string;
   userId: string;
-  postedAt: number | Date;
+  postedAt: Date;
 }
 
 export interface Like {
@@ -29,7 +29,7 @@ export interface Comment {
   userId: string;
   postId: string;
   comment: string;
-  postedAt: number;
+  postedAt: Date;
 }
 
 export interface TokenObject {
